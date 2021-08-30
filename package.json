@@ -1,0 +1,26 @@
+{
+  "name": "hat",
+  "version": "1.0.0",
+  "description": "An Electron app that is a hat. You can put it on your other apps, put things in it and pick things out of it.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron -r esm ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rezmason/hat.git"
+  },
+  "keywords": [
+    "hat"
+  ],
+  "author": "Rezmason",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/Rezmason/hat/issues"
+  },
+  "homepage": "https://github.com/Rezmason/hat#readme",
+  "devDependencies": {
+    "electron": "^13.2.3",
+    "esm": "^3.2.25"
+  }
+}

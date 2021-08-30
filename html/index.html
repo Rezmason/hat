@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<style type="text/css">
+			html, body {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			#hat {
+				transform: translate(0px, -110px);
+				transform-origin: 50% 200px;
+				user-select: none;
+			}
+
+			#brim {
+				position: absolute;
+				top: 170px;
+				left:  75px;
+				width: 100px;
+				height: 100px;
+				-webkit-app-region: drag;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="hat">
+			<img id="crown" src="hat.png" width="250" height="250" draggable="false">
+			<div id="brim"></div>
+		</div>
+		<script>
+			const hat = document.querySelector("#hat");
+			const crown = document.querySelector("#crown");
+			let angle = 0;
+			let startAngle, startMouseAngle, rotating = false;
+			const contents = [];
+
+			const getAngle = (x, y) => Math.atan2(y - 250, x - 250);
+
+			const startRotate = (event) => {
+				startAngle = angle;
+				rotating = true;
+				startMouseAngle = getAngle(event.pageX, event.pageY);
+			}
+
+			const updateRotate = (event) => {
+				if (!rotating) {
+					return;
+				}
+
+				const mouseAngle = getAngle(event.pageX, event.pageY);
+				const diffAngle = mouseAngle - startMouseAngle;
+				angle = startAngle + diffAngle;
+				hat.style.transform = `translate(0px, -110px) rotate(${angle}rad)`;
+			}
+
+			const endRotate = () => {
+				rotating = false;
+			}
+
+			crown.addEventListener("mousedown", startRotate);
+
+			window.addEventListener("mouseup", endRotate);
+			window.addEventListener("mouseleave", endRotate);
+			window.addEventListener("mousemove", updateRotate);
+			// let angle = 0;
+			// const update = () => {
+			// 	angle += 2;
+
+			// 	requestAnimationFrame(update);
+			// }
+			// update();
+		</script>
+	</body>
+</html>
